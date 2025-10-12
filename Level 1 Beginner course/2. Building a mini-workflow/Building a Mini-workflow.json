@@ -1,0 +1,59 @@
+{
+  "name": "Building a Mini-workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "042a63e1-3695-441a-abb7-ad796ca794a4",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "resource": "all",
+        "limit": 10,
+        "additionalFields": {
+          "keyword": "automation"
+        }
+      },
+      "type": "n8n-nodes-base.hackerNews",
+      "typeVersion": 1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "dc764a0f-0d87-4b85-96e0-b615556e75c0",
+      "name": "Hacker News",
+      "notesInFlow": true,
+      "notes": "Get the 10 latest articles."
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Hacker News",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "d654b4f7-157c-45fb-bcbb-b3586ecfe70f",
+  "meta": {
+    "instanceId": "3d4cd33f705cf7dd2b674c4b30cc858411cfdfb499c9855125e1e84324490ad0"
+  },
+  "id": "1EOlL1xV0Q0tqLwu",
+  "tags": []
+}
