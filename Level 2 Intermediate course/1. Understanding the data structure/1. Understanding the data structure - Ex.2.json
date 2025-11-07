@@ -1,0 +1,77 @@
+{
+  "name": "1. Understanding the data structure - Ex.2",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "7dfd355e-f1e4-4e91-a3a9-848650543a33",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "jsCode": "var myContacts = [\n\t{\n\t\tjson: {\n\t\t\tname: 'Alice',\n\t\t\temail: {\n\t\t\t\tpersonal: 'alice@home.com',\n\t\t\t\twork: 'alice@wonderland.org'\n\t\t\t},\n\t\t}\n\t},\n\t{\n\t\tjson: {\n\t\t\tname: 'Bob',\n\t\t\temail: {\n\t\t\t\tpersonal: 'bob@mail.com',\n\t\t\t\twork: 'contact@thebuilder.com'\n\t\t\t\t},\n\t\t}\n\t},\n];\n\nreturn myContacts;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "9a96254b-9d19-4c3f-a81e-b327d658fcc0",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "jsCode": "let items = $input.all();\nitems[0].json.workEmail = items[0].json.email.work;\nreturn items;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        416,
+        0
+      ],
+      "id": "57c69ef9-3814-4dd4-a16b-bcfe2d89f22e",
+      "name": "Code in JavaScript1"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "9d83f36a-205f-414c-a4cf-8908674581fd",
+  "meta": {
+    "instanceId": "3d4cd33f705cf7dd2b674c4b30cc858411cfdfb499c9855125e1e84324490ad0"
+  },
+  "id": "Qpp4R7Qkgd90CFAX",
+  "tags": []
+}

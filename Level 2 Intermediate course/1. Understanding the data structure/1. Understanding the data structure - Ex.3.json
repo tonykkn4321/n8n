@@ -1,0 +1,117 @@
+{
+  "name": "1. Understanding the data structure - Ex.3",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        -176
+      ],
+      "id": "7dfd355e-f1e4-4e91-a3a9-848650543a33",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "url": "https://pokeapi.co/api/v2/pokemon",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        224,
+        -176
+      ],
+      "id": "0303e27a-a75b-43c5-ba2d-e21c5840380e",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "results",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        432,
+        -176
+      ],
+      "id": "58783f88-5b28-4108-aa7a-24970e830bba",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "url": "https://pokeapi.co/api/v2/pokemon",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        224,
+        80
+      ],
+      "id": "79c2c4e1-8209-4122-a2ea-e7d81c6897f4",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "jsCode": "let items = $input.all();\nreturn items[0].json.results.map(item => {\n\treturn {\n\t\tjson: item\n\t}\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        432,
+        80
+      ],
+      "id": "7a18ce32-9dc7-4f60-a0d8-3bd1741ea3fe",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "b549d517-bafb-48e2-9c52-5f2198cf1001",
+  "meta": {
+    "instanceId": "3d4cd33f705cf7dd2b674c4b30cc858411cfdfb499c9855125e1e84324490ad0"
+  },
+  "id": "Qpp4R7Qkgd90CFAX",
+  "tags": []
+}

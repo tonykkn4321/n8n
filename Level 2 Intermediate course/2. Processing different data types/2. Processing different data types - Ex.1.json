@@ -1,0 +1,94 @@
+{
+  "name": "2. Processing different data types - Ex.1",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "88ee08f0-31bb-4ba4-97e3-ea0c4c503fac",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "url": "https://blog.n8n.io/",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "5c2de00d-0b92-492e-983b-a8c19065ed0c",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "title",
+              "cssSelector": ".post .item-title a",
+              "returnValue": "html"
+            },
+            {
+              "key": "url",
+              "cssSelector": ".post .item-title a",
+              "returnValue": "attribute",
+              "attribute": "href"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        416,
+        0
+      ],
+      "id": "d775ac15-ca8a-4e18-a519-e414bc1a5c5c",
+      "name": "HTML"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "66300a11-5467-47bd-a45b-5e97936c2971",
+  "meta": {
+    "instanceId": "3d4cd33f705cf7dd2b674c4b30cc858411cfdfb499c9855125e1e84324490ad0"
+  },
+  "id": "DbfFlgApjUTgt9ss",
+  "tags": []
+}
