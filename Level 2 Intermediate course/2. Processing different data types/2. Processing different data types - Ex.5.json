@@ -1,0 +1,120 @@
+{
+	"name": "JSON to file and Read-Write",
+	"nodes": [
+		{
+		"parameters": {},
+		"id": "78639a25-b69a-4b9c-84e0-69e045bed1a3",
+		"name": "When clicking \"Execute Workflow\"",
+		"type": "n8n-nodes-base.manualTrigger",
+		"typeVersion": 1,
+		"position": [
+			480,
+			520
+		]
+		},
+		{
+		"parameters": {
+			"url": "https://poetrydb.org/random/1",
+			"options": {}
+		},
+		"id": "a11310df-1287-4e9a-b993-baa6bd4265a6",
+		"name": "HTTP Request",
+		"type": "n8n-nodes-base.httpRequest",
+		"typeVersion": 4.1,
+		"position": [
+			680,
+			520
+		]
+		},
+		{
+		"parameters": {
+			"operation": "toJson",
+			"options": {}
+		},
+		"id": "06be18f6-f193-48e2-a8d9-35f4779d8324",
+		"name": "Convert to File",
+		"type": "n8n-nodes-base.convertToFile",
+		"typeVersion": 1,
+		"position": [
+			880,
+			520
+		]
+		},
+		{
+		"parameters": {
+			"operation": "write",
+			"fileName": "/tmp/poetrydb.json",
+			"options": {}
+		},
+		"id": "f2048e5d-fa8f-4708-b15a-d07de359f2e5",
+		"name": "Read/Write Files from Disk",
+		"type": "n8n-nodes-base.readWriteFile",
+		"typeVersion": 1,
+		"position": [
+			1080,
+			520
+		]
+		},
+		{
+		"parameters": {
+			"fileSelector": "={{ $json.fileName }}",
+			"options": {}
+		},
+		"id": "d630906c-09d4-49f4-ba14-416c0f4de1c8",
+		"name": "Read/Write Files from Disk1",
+		"type": "n8n-nodes-base.readWriteFile",
+		"typeVersion": 1,
+		"position": [
+			1280,
+			520
+		]
+		}
+	],
+	"pinData": {},
+	"connections": {
+		"When clicking \"Execute Workflow\"": {
+		"main": [
+			[
+			{
+				"node": "HTTP Request",
+				"type": "main",
+				"index": 0
+			}
+			]
+		]
+		},
+		"HTTP Request": {
+		"main": [
+			[
+			{
+				"node": "Convert to File",
+				"type": "main",
+				"index": 0
+			}
+			]
+		]
+		},
+		"Convert to File": {
+		"main": [
+			[
+			{
+				"node": "Read/Write Files from Disk",
+				"type": "main",
+				"index": 0
+			}
+			]
+		]
+		},
+		"Read/Write Files from Disk": {
+		"main": [
+			[
+			{
+				"node": "Read/Write Files from Disk1",
+				"type": "main",
+				"index": 0
+			}
+			]
+		]
+		}
+	}
+}

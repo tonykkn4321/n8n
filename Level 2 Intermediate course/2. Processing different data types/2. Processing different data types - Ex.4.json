@@ -1,0 +1,69 @@
+{
+	"name": "Binary to JSON",
+	"nodes": [
+		{
+		"parameters": {},
+		"id": "78639a25-b69a-4b9c-84e0-69e045bed1a3",
+		"name": "When clicking \"Execute Workflow\"",
+		"type": "n8n-nodes-base.manualTrigger",
+		"typeVersion": 1,
+		"position": [
+			480,
+			520
+		]
+		},
+		{
+		"parameters": {
+			"url": "https://media.kaspersky.com/pdf/Kaspersky_Lab_Whitepaper_Anti_blocker.pdf",
+			"options": {}
+		},
+		"id": "a11310df-1287-4e9a-b993-baa6bd4265a6",
+		"name": "HTTP Request",
+		"type": "n8n-nodes-base.httpRequest",
+		"typeVersion": 4.1,
+		"position": [
+			700,
+			520
+		]
+		},
+		{
+		"parameters": {
+			"operation": "pdf",
+			"options": {}
+		},
+		"id": "88697b6b-fb02-4c3d-a715-750d60413e9f",
+		"name": "Extract From File",
+		"type": "n8n-nodes-base.extractFromFile",
+		"typeVersion": 1,
+		"position": [
+			920,
+			520
+		]
+		}
+	],
+	"pinData": {},
+	"connections": {
+		"When clicking \"Execute Workflow\"": {
+		"main": [
+			[
+			{
+				"node": "HTTP Request",
+				"type": "main",
+				"index": 0
+			}
+			]
+		]
+		},
+		"HTTP Request": {
+		"main": [
+			[
+			{
+				"node": "Extract From File",
+				"type": "main",
+				"index": 0
+			}
+			]
+		]
+		}
+	}
+}
